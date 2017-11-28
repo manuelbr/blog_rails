@@ -1,0 +1,12 @@
+<h2>Bienvenido al blog personal de Manuel Blanco</h2>
+
+<%# <% sólo evalúa lógica de programación en ruby. <%= lo evalúa y muestra el resultado en el html %>
+
+<% num = 0
+  [1,2,3,4].each do |numero| %>
+    <p>Número <%= numero %></p>
+    <% num = numero
+  end
+%>
+
+<%= "El último número es: #{num}" %>
