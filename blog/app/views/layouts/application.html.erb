@@ -3,12 +3,35 @@
   <head>
     <title>Blog</title>
     <%= csrf_meta_tags %>
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,500i,700,700i" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <nav class="menu">
+        <ul class="no-list row center-xs middle-xs">
+          <li class="col-md">
+            <h2 class="logo"><%= link_to "Manuel Blanco Rienda", root_path %></h2>
+          </li>
+          <li class="col-md">
+            <%= link_to "Currículum", root_path %>
+          </li>
+          <li class="col-md">
+            <%= link_to "Proyectos", root_path %>
+          </li>
+          <li class="col-md">
+            <%= link_to "Mi vida", root_path %>
+          </li>
+          <li class="col-md">
+            <%= link_to "Contacto", root_path %>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
     <%= yield %>
   </body>
 </html>

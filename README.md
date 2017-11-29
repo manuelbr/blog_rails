@@ -83,3 +83,11 @@ Las dos etiquetas principales de las plantillas .erb son: "<% %>" y "<%= %>". Am
  * <%= %> -> Evalúa la lógica en ruby que contiene y además muestra el resultado.
 
 Para concluir la diferencia entre las dos etiquetas, se puede decir que "<% %>" interpreta únicamente código en ruby, mientras que "<%= %>", además de interpretarlo puede mezclar el resultado de su evaluación con texto plano, para representar los resultados.
+
+### Vistas
+
+Las vistas agrupan el código que se repite a lo largo de los controladores de la web. Por ejemplo, si en nuestro proyecto de blog tenemos una sección específica para la organización de los artículos, lo normal es que el código que se repita de esta sección, se aglomere en una vista concreta, mientras que el comportamiento específico de las diferentes funcionalidades, se defina en los controladores.
+
+En este momento, ya podemos distinguir entre dos tipos de contenido dentro de la carpeta "views". Por un lado, cada controlador supone un directorio dentro de la mencionada carpeta. Por otro, existe una única carpeta llamada "layouts" para almacenarlas. Mientras que un controlador se puede componer de diferentes ficheros, una vista (haciendo caso de la lógica para que fueron inventadas) es un sólo "html.erb".
+
+Una de las partes más características de una vista es el head: la cabecera que contiene los metadatos de la página, que incluye los scripts, hojas de estilo y demás "assets" que se repiten a lo largo de una serie de páginas.

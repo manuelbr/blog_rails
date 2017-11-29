@@ -1,0 +1,32 @@
+.menu{
+  background-color: #FF6138;
+  color: #F2F2F2;
+}
+
+html, body{
+  margin: 0px 0px;
+  font-family: 'Roboto', sans-serif;
+  background-image: none;
+}
+
+a,a:visited{
+  color:inherit;
+  text-decoration: none;
+}
+
+.no-list{
+  list-style-type: none;
+  display: table;
+}
+
+.logo{
+  margin-right: 100px;
+}
+
+.col-md{
+  display: table-cell;
+  padding-left: 20px;
+  padding-right: 20px;
+  vertical-align: middle;
+  font-size: 20px;
+}
