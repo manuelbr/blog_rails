@@ -4,7 +4,7 @@ Blog de práctica para aprendizaje de Ruby on Rails
 
 Enlace al curso: https://codigofacilito.com/cursos/rails
 
-## Apuntes
+## Apuntes básicos sobre Ruby on Rails
 
 ### Creación de un proyecto
 
@@ -91,3 +91,44 @@ Las vistas agrupan el código que se repite a lo largo de los controladores de l
 En este momento, ya podemos distinguir entre dos tipos de contenido dentro de la carpeta "views". Por un lado, cada controlador supone un directorio dentro de la mencionada carpeta. Por otro, existe una única carpeta llamada "layouts" para almacenarlas. Mientras que un controlador se puede componer de diferentes ficheros, una vista (haciendo caso de la lógica para que fueron inventadas) es un sólo "html.erb".
 
 Una de las partes más características de una vista es el head: la cabecera que contiene los metadatos de la página, que incluye los scripts, hojas de estilo y demás "assets" que se repiten a lo largo de una serie de páginas.
+
+### Rutas
+
+Las rutas definen las posibles urls que puede contemplar la aplicación web. Se definen en el archivo "routes.rb", dentro de la carpeta "config" del proyecto. La sintaxis de este fichero se basa en la definición de tres elementos por cada ruta:
+
+  - Verbo: Get, post, delete, put, patch (El verbo http con el que se hace la llamada, en función de lo que se quiera).
+  - Controlador: El controlador que recibe la acción. En dicho controlador se define el plan de actuación para esta llamada.
+  - Opciones: Los parámetros que se pasan adjuntos a la llamada. Pueden ir incluidos como parte de la url o en forma de sintaxis específica de archivos ".rb". Las opciones pueden ser funcionalidades específicas del controlador o datos que se le pasan a éstas.
+
+Así por ejemplo, una ruta definida podría quedar como: "get '/articles/new' ", en la que especificamos que rails aceptará una petición de tipo get al controlador "articles", sobre su funcionalidad "new". Si se van a definir múltiples rutas para un mismo recurso (como un controlador, por ejemplo), se pueden agrupar bajo el mismo bloque, siguiendo la sintaxis del siguiente ejemplo:
+
+```
+resources :articles
+  get "/articles"
+  post "/articles"
+  delete "/articles"
+  get "/articles/:id"
+  get "/articles/new"
+  get "/articles/:id/edit"
+  patch "/articles/:id"
+  put "/articles/:id"
+end
+```
+
+Hay que remarcar que definir las rutas de una aplicación, no significa la definición del plan de actuación frente a ellas. Ello se planifica sobre los controladores en los que está previsto recibir esas llamadas. En nuestro caso de ejemplo, en articles.
+
+### Consola de rails y gestión de bd mediante consola
+
+Nosotros podemos ejecutar el código ruby que insertamos en las plantillas de rails, directamente desde la consola que nos proporciona. Esto se suele utilizar mucho cuando tenemos que hacer consultas, inserción o mantenimiento de las bases de datos que gestiona la aplicación en rails. Una forma de acceder a la mencionada consola, es a través del comando: "rails console". En esta terminal, podemos ver, insertar, eliminar o actualizar tuplas de la base de datos, como si de mysql se tratara, pero con la sintaxis de ruby.
+
+Por otra parte, cada instancia de la base de datos (hay que recordar) se considera un modelo, por lo que podemos consultar y modificar su estructura en cuanto a columnas y atributos, en el fichero: models/(nombre del modelo). A su vez, por ser un modelo (que hereda de "Active Records"), esta instancia dispone de una serie de funciones predefinidas para trabajar con ella como si se tratara de un elemento normal de base de datos. De esta forma, podemos encontrar funciones: "delete, update, create, etc", pre-definidas para él. Por ejemplo, si quisiéramos hacer una inserción (insert into) de un elemento en la tabla "articles", la sintaxis de la orden sería la siguiente:
+
+```
+Article.create(titulo:"Primer artículo", contenido: "Bienvenido a mi blog", numero_visitas: 0)
+
+```
+Si queremos definir una función personalizada para un modelo, podemos hacerlo en su fichero correspondiente: models/(nombre del modelo). En el siguiente [enlace](http://guides.rubyonrails.org/active_record_querying.html), se listan algunas de las funciones predefinidas de los modelos, que hacen las veces de los "select", "update" o "delete" habituales. Por ejemplo, para hacer un describe, podemos usar la función "(nombre del modelo).attribute_names".
+
+## Notas sueltas
+
+* El orden de funcionalidad dentro de una aplicación rails es: Ruta (llamada) -> Controlador (plan de acción) -> Modelo (Instancia de base de datos) -> Vista (donde se muestran los resultados de la lógica ejecutada en el plan de acción).
