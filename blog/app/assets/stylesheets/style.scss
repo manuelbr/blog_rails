@@ -30,3 +30,26 @@ a,a:visited{
   vertical-align: middle;
   font-size: 20px;
 }
+
+.formulario{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.field{
+  margin-top: 1em;
+}
+
+.area{
+  height: 250px;
+}
+
+.form-control{
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+  width: 100%;
+  display: block;
+  padding: 10px 0px;
+  font-size: 1.2em;
+}

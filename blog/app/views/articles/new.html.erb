@@ -1,0 +1,18 @@
+<div class="formulario">
+
+<%= form_for(@article) do |f|  %>
+
+  <!-- La clase field la utilizo para definir el estilo de los campos del formulario -->
+  <div class="field">
+    <!-- Esto quiere decir que el atributo titulo del modelo artículo, será del tipo "text_field", que es el equivalente a un campo de texto string en un form  -->
+    <!-- También añado que este campo usa la clase css form-control -->
+    <%= f.text_field :titulo, placeholder: "Título", class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :contenido, placeholder: "Escribe aquí el artículo", class: "form-control area" %>
+  </div>
+
+<%end%>
+
+</div>
