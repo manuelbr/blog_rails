@@ -1,4 +1,5 @@
-.menu{
+
+.main-color{
   background-color: #FF6138;
   color: #F2F2F2;
 }
@@ -52,4 +53,13 @@ a,a:visited{
   display: block;
   padding: 10px 0px;
   font-size: 1.2em;
+}
+
+.boton{
+  font-size: 1.2em;
+  padding: 10px 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
 }
