@@ -23,8 +23,14 @@ class ArticlesController < ApplicationController
   #Aquí se define la lógica que hay que seguir para crear la nueva instancia que se ha definido en new
   def create
     @article = Article.new(titulo: params[:article][:titulo], contenido: params[:article][:titulo])
-    @article.save
 
-    redirect_to @article
+    # Si el guardado del modelo es correcto (ha pasado también las validaciones) redireccionamos a
+    # verlo. 
+    if @article.save
+      redirect_to @article
+    else # En caso de que haya habido algún problema o no haya pasado las validaciones (fichero article en models)
+      render :new
+    end
+
   end
 end

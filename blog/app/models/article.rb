@@ -7,4 +7,8 @@ class Article < ApplicationRecord
   # uno de los campos tiene un tipo: string, text, integer, float, etc. Se traducen a varchar, string y demás tipos de valor típicos
   # de SQL, en caso de que ese sea el tipo de base de datos utilizada.
 
+
+  # Especificamos que queremos que esos atributos del modelo no sean null, obligamos a que tengan un valor como en SQL.
+  validates :titulo, presence: true, uniqueness: true # El título es clave primaria
+  validates :contenido, presence: true, length: {minimum: 20}
 end
