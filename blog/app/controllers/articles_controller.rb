@@ -25,12 +25,18 @@ class ArticlesController < ApplicationController
     @article = Article.new(titulo: params[:article][:titulo], contenido: params[:article][:titulo])
 
     # Si el guardado del modelo es correcto (ha pasado también las validaciones) redireccionamos a
-    # verlo. 
+    # verlo.
     if @article.save
       redirect_to @article
     else # En caso de que haya habido algún problema o no haya pasado las validaciones (fichero article en models)
       render :new
     end
+  end
 
+  #DELETE articles/:id
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path # redirige a articles/index.
   end
 end

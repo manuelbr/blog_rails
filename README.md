@@ -129,6 +129,25 @@ Article.create(titulo:"Primer artículo", contenido: "Bienvenido a mi blog", num
 ```
 Si queremos definir una función personalizada para un modelo, podemos hacerlo en su fichero correspondiente: models/(nombre del modelo). En el siguiente [enlace](http://guides.rubyonrails.org/active_record_querying.html), se listan algunas de las funciones predefinidas de los modelos, que hacen las veces de los "select", "update" o "delete" habituales. Por ejemplo, para hacer un describe, podemos usar la función "(nombre del modelo).attribute_names".
 
+#### Funciones de la consola de Ruby on Rails para ActiveRecord
+
+Una de las mejores cosas de Ruby on Rails es el uso de ActiveRecord, que es la capa de rails que abstrae las operaciones con Base de Datos, de forma que con el mismo código podemos cambiar el tipo de base de datos, sin que afecte a nada. Por ejemplo, de un momento a otro podemos pasar de usar SQL a MongoDB, sin ninguna repercusión sobre el código del proyecto.
+
+Dentro de una instancia de ActiveRecord, en la consola de rails (o en el mismo código) podemos usar diferentes funciones para sustituir lo que haríamos con código de lenguaje de base de datos. Algunas de estas funciones son:
+
+ * Por defecto, ActiveRecord usa un entero auto incrementable como clave primaria de las instancias, y por tanto cuando hacemos lo siguiente: Article.find(2), se busca el elemento con id=2, pero no hay que olvidar que ese id es invisible al usuario.
+
+ * Si queremos buscar por otro tipo de campo: Article.find_by(titulo:"Segundo título").
+
+ * Article.where("titulo LIKE ?", "%articu%") -> Para consultas más complejas, por condiciones. Las variables en las consultas se ponen usando el símbolo clave "?". Por cada "?" se pasa (separados por comas) los valores de las variables.
+
+ La diferencia entre find y la clausula where es que con find, se devuelve un único elemento (el primero que coincide con la condición), pero con where obtenemos un array con todos los elementos como resultado.
+
+ Ejemplo complejo: Article.where("id = ? OR title = ?", params[:id], params[:title]), en caso de usar la funcionalidad en el código del controlador artículo.
+
+ * Se puede añadir la función ".not" a la de "where". Ejemplo: Article.where.not("id = ? ","3").
+
+
 ## Notas sueltas
 
 * El orden de funcionalidad dentro de una aplicación rails es: Ruta (llamada) -> Controlador (plan de acción) -> Modelo (Instancia de base de datos) -> Vista (donde se muestran los resultados de la lógica ejecutada en el plan de acción).
