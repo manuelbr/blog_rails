@@ -22,7 +22,13 @@ class ArticlesController < ApplicationController
   #POST articles/create
   #Aquí se define la lógica que hay que seguir para crear la nueva instancia que se ha definido en new
   def create
+    #Si le pasaramos al new, el objeto article entero que se crea al guardarlo desde la vista, podríamos
+    #enviar un objeto con atributos corruptos, que no controlemos.
+    #Al especificar en el new el valor de qué atributos queremos tener, evitamos ésto,
     @article = Article.new(titulo: params[:article][:titulo], contenido: params[:article][:titulo])
+    #Otra opción es hacer lo siguiente, para determinar las condiciones de funcionamiento que especificamos en article_params:
+    #@article = Article.new(article_params)
+
 
     # Si el guardado del modelo es correcto (ha pasado también las validaciones) redireccionamos a
     # verlo.
@@ -39,4 +45,17 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to articles_path # redirige a articles/index.
   end
+
+  #Todo lo que definamos a partir de la etiqueta "private" serán métodos o atributos privados.
+  private
+
+  #Se trata de un atributo reservado: nombre del ActiveRecord + "_params"
+  def article_params
+    #Establecemos que para funcionar, se requiere un objeto ActiveRecord de tipo article y que sólo se le permite a ese
+    #artículo tener el campo título y contenido rellenos. Este atributo article_params, se llama desde las funciones donde se
+    #requiera su presencia para establecer las condiciones de funcionamiento de la misma.
+    params.require(:article).permit(:titulo, :contenido)
+  end
+
+
 end
