@@ -1,0 +1,30 @@
+<%= form_for(@article) do |f|  %>
+
+  <!-- Cuando abrimos la vista para crear un nuevo artículo, si no existe previamente la instancia, no muestra errores
+  porque no hay ninguno. Como en el controlador, en la función new se ha definido que en caso de haber algún error,
+  se cambie a la vista de la función new, la instancia no habrá cambiado, porque lo único que hemos hecho ha sido
+  cambiar su vista. Por ello podemos mostrar su información, aunque no hayamos guardado la instancia en base de datos:
+  podemos cambiar entre vistas del mismo modelo, sin que cambie él. -->
+
+  <% @article.errors.full_messages.each do |mensaje| %>
+    <div class = "main-color space-top">
+      <%= mensaje %>
+    </div>
+  <%end%>
+
+  <!-- La clase field la utilizo para definir el estilo de los campos del formulario -->
+  <div class="field">
+    <!-- Esto quiere decir que el atributo titulo del modelo artículo, será del tipo "text_field", que es el equivalente a un campo de texto string en un form  -->
+    <!-- También añado que este campo usa la clase css form-control -->
+    <%= f.text_field :titulo, placeholder: "Título", class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :contenido, placeholder: "Escribe aquí el artículo", class: "form-control area" %>
+  </div>
+
+  <div class="field">
+    <%= f.submit "Guardar", class: "main-color boton" %>
+  </div>
+
+<%end%>

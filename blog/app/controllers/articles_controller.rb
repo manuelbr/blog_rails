@@ -39,6 +39,19 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    #Encontramos el artículo a editar.
+    @article = Article.find(params[:id])
+
+    #if @article.save
+    #  redirect_to @article
+    #else # En caso de que haya habido algún problema o no haya pasado las validaciones (fichero article en models)
+    #  render :new
+    #end
+
+    #redirect_to @article
+  end
+
   #DELETE articles/:id
   def destroy
     @article = Article.find(params[:id])
