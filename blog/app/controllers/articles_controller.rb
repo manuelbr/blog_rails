@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
     #Si le pasaramos al new, el objeto article entero que se crea al guardarlo desde la vista, podríamos
     #enviar un objeto con atributos corruptos, que no controlemos.
     #Al especificar en el new el valor de qué atributos queremos tener, evitamos ésto,
-    @article = Article.new(titulo: params[:article][:titulo], contenido: params[:article][:titulo])
+    @article = Article.new(titulo: params[:article][:titulo], contenido: params[:article][:contenido])
     #Otra opción es hacer lo siguiente, para determinar las condiciones de funcionamiento que especificamos en article_params:
     #@article = Article.new(article_params)
 
@@ -39,17 +39,23 @@ class ArticlesController < ApplicationController
     end
   end
 
+  #GET articles/:id
   def edit
     #Encontramos el artículo a editar.
     @article = Article.find(params[:id])
+  end
 
-    #if @article.save
+  #PUT articles/:id
+  def update
+    #Encontramos el artículo a actualizar.
+    @article = Article.find(params[:id])
+
+    #if @article.update({titulo: params[:article][:titulo], contenido: params[:article][:titulo]})
+      # ó también se puede poner como @article.update(article_params)
     #  redirect_to @article
-    #else # En caso de que haya habido algún problema o no haya pasado las validaciones (fichero article en models)
-    #  render :new
+    #else
+    #  render :edit
     #end
-
-    #redirect_to @article
   end
 
   #DELETE articles/:id
@@ -69,6 +75,4 @@ class ArticlesController < ApplicationController
     #requiera su presencia para establecer las condiciones de funcionamiento de la misma.
     params.require(:article).permit(:titulo, :contenido)
   end
-
-
 end

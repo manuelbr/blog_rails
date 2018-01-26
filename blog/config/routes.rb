@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get "/articles/:id" show
   get "/articles/new" new
   get "/articles/:id/edit" edit
-  patch "/articles/:id" update
   put "/articles/:id" update
 =end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

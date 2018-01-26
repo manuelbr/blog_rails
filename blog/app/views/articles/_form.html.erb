@@ -1,3 +1,10 @@
+<!-- El operador "||=" lo que hace es: Si la variable no tiene un valor, la inicializo con ese, para evitar problemas
+con variables vacías. -->
+<% name ||= "Crear" %>
+<!-- -->
+
+<h2><%= name %></h2>
+
 <%= form_for(@article) do |f|  %>
 
   <!-- Cuando abrimos la vista para crear un nuevo artículo, si no existe previamente la instancia, no muestra errores

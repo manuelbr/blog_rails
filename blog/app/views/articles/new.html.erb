@@ -1,7 +1,8 @@
 <div class="formulario">
+  <!-- Para pasar parámetros a la vista, desde el controlador. En caso de querer pasar
+  más de uno, se trata de un hash, por lo que lo escribimos así:
 
-<h2>Crear un nuevo artículo</h2>
-
-  <%= render "form"%>
-
+    <%= render "form", {name: ("Editar artículo con id " + params[:id]), otra_variable: "otro valor"} %>
+ -->
+  <%= render "form", name: "Crear artículo"%>
 </div>
