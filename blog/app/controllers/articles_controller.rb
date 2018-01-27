@@ -50,12 +50,12 @@ class ArticlesController < ApplicationController
     #Encontramos el artículo a actualizar.
     @article = Article.find(params[:id])
 
-    #if @article.update({titulo: params[:article][:titulo], contenido: params[:article][:titulo]})
+    if @article.update({titulo: params[:article][:titulo], contenido: params[:article][:contenido]})
       # ó también se puede poner como @article.update(article_params)
-    #  redirect_to @article
-    #else
-    #  render :edit
-    #end
+      redirect_to @article
+    else
+      render :edit
+    end
   end
 
   #DELETE articles/:id

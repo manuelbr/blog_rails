@@ -4,15 +4,27 @@
   color: #F2F2F2;
 }
 
+.rojo{
+  color: #FF6138;
+}
+
+.naranja{
+  color: #F2F2F2;
+}
+
 html, body{
   margin: 0px 0px;
   font-family: 'Roboto', sans-serif;
   background-image: none;
 }
 
-a,a:visited{
+a {
   color:inherit;
   text-decoration: none;
+}
+
+a boton_visitado:visited{
+  color: #2E2EFE;
 }
 
 .no-list{

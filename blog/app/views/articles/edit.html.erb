@@ -3,8 +3,10 @@
   <!-- Para pasar parámetros a la vista, desde el controlador. En caso de querer pasar
   más de uno, se trata de un hash, por lo que lo escribimos así:
 
-    <%= render "form", {name: ("Editar artículo con id " + params[:id]), otra_variable: "otro valor"} %>
- -->
+  <%# render "form", {name: ("Editar artículo con id " + params[:id]), otra_variable: "otro valor"} %>
+
+  -->
+
   <%= render "form", name: ("Editar artículo con id " + params[:id]) %>
 
 </div>

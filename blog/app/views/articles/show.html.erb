@@ -1,2 +1,6 @@
 <h2><%= @article.titulo %></h2>
 <p><%= @article.contenido %></p>
+</br>
+<div class="field">
+  <%= link_to "Editar", edit_article_path(@article), class: "main-color boton" %>
+</div>
