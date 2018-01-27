@@ -151,3 +151,19 @@ Dentro de una instancia de ActiveRecord, en la consola de rails (o en el mismo c
 ## Notas sueltas
 
 * El orden de funcionalidad dentro de una aplicación rails es: Ruta (llamada) -> Controlador (plan de acción) -> Modelo (Instancia de base de datos) -> Vista (donde se muestran los resultados de la lógica ejecutada en el plan de acción).
+
+* Las gemas en Ruby on Rails son plugins de extensión que se añaden a los proyectos en este tipo de Frameworks. En este [enlace](https://rubygems.org), se pueden buscar todas las gemas (y la sintaxis para saber cómo añadirlas) en Ruby on Rails. Las gemas se añaden en el fichero "Gemfile" y se instalan en el proyecto (habiendo parado el servidor) todas las gemas que haya especificadas en el fichero, con el comando bundle install.
+
+Sí sólo se quiere instalar una gema específica, para no tener que instalar todas, se puede hacer con el comando:
+
+```
+rails g (nombre de la gema):install .
+```
+
+En el caso concreto de la gema devise, se puede usar para la autenticación de usuarios:
+
+```
+rails g devise (Nombre del modelo de tipo usuario)
+```
+
+El anterior comando crea un modelo de tipo Usuario, con correo electrónico, contraseña, nombre de usuario, etc; Todo orientado a la autenticación con usuarios.
