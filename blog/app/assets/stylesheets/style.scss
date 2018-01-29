@@ -44,6 +44,14 @@ a boton_visitado:visited{
   font-size: 20px;
 }
 
+.col-md-right{
+  display: table-cell;
+  padding-left: 100px;
+  padding-right: 20px;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
 .formulario{
   width: 80%;
   margin: 0 auto;
@@ -55,6 +63,10 @@ a boton_visitado:visited{
 
 .area{
   height: 250px;
+}
+
+.text-left{
+  text-align: left;
 }
 
 .form-control{
@@ -70,6 +82,7 @@ a boton_visitado:visited{
 .boton{
   font-size: 1.2em;
   padding: 10px 12px;
+  margin-top: 10px;
   cursor: pointer;
   text-transform: uppercase;
   border: none;

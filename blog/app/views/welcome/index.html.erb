@@ -1,1 +1,5 @@
-<h2>Bienvenido al blog personal de Manuel Blanco</h2>
+<% if user_signed_in? %>
+  <h2>Bienvenido/a <%= current_user.email %></h2>
+<% else %>
+  <h2>Bienvenido/a </h2>
+<% end %>

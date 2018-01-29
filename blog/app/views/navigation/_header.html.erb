@@ -1,0 +1,38 @@
+<header>
+  <nav class="main-color">
+    <ul class="no-list row center-xs middle-xs">
+      <li class="col-md">
+        <h2 class="logo"><%= link_to "Manuel Blanco Rienda", root_path %></h2>
+      </li>
+      <li class="col-md">
+        <%= link_to "Currículum", root_path %>
+      </li>
+      <li class="col-md">
+        <%= link_to "Proyectos", root_path %>
+      </li>
+      <li class="col-md">
+        <%= link_to "Mi vida", root_path %>
+      </li>
+      <li class="col-md">
+        <%= link_to "Contacto", root_path %>
+      </li>
+
+      <!-- Si el usuario está identificado, mostrará lo que haya en el siguiente bloque de código.
+      También hay que recordar que el atributo user_signed_in se llama así porque he especificado a devise
+      que el nombre del modelo usado para representar a los usuarios se llamará "user"-->
+      <% if user_signed_in? %>
+        <li class="col-md-right">
+          <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete%>
+        </li>
+      <% else %>
+        <li class="col-md-right">
+          <%= link_to "Registrarse", new_user_registration_path %>
+        </li>
+        <li class="col-md">
+          <%= link_to "Iniciar Sesión", new_user_session_path %>
+        </li>
+      <% end %>
+
+    </ul>
+  </nav>
+</header>
