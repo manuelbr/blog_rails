@@ -9,6 +9,8 @@ class Article < ApplicationRecord
 
 
   # Especificamos que queremos que esos atributos del modelo no sean null, obligamos a que tengan un valor como en SQL.
+  belongs_to :user #Un artículo tiene que pertenecer a un usuario.
   validates :titulo, presence: true, uniqueness: true # El título es clave primaria
   validates :contenido, presence: true, length: {minimum: 20}
+
 end

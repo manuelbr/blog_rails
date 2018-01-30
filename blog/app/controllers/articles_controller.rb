@@ -25,7 +25,10 @@ class ArticlesController < ApplicationController
     #Si le pasaramos al new, el objeto article entero que se crea al guardarlo desde la vista, podríamos
     #enviar un objeto con atributos corruptos, que no controlemos.
     #Al especificar en el new el valor de qué atributos queremos tener, evitamos ésto,
-    @article = Article.new(titulo: params[:article][:titulo], contenido: params[:article][:contenido])
+
+    # current_user tiene articles como atributo porque he establecido en user.rb que un usuario has_many articles.
+    @article = current_user.articles.new(titulo: params[:article][:titulo], contenido: params[:article][:contenido])
+
     #Otra opción es hacer lo siguiente, para determinar las condiciones de funcionamiento que especificamos en article_params:
     #@article = Article.new(article_params)
 

@@ -43,6 +43,49 @@ Una vez que se crea el modelo, es necesario migrar la base de datos. Migrar la b
 
  * En configuration/database.yml se definen las diferentes bases de datos que usará el proyecto (en función si es en la versión test, producción o desarrollo). Podemos definir el tipo que queramos de base de datos y rails trabajará de forma transparente con todas ellas, de la misma forma.
 
+#### Relaciones 1 a muchos
+
+Las relaciones entre modelos se pueden definir en la consola de rails con comandos como el siguiente:
+
+```
+rails generate migration add_user_id_to_articles user:references
+```
+
+En este comando, lo que hacemos es generar un archivo de migración que rake puede ejecutar para llevar a cabo una serie de cambios sobre la base de datos. Los cambios en cuestión son la definición de relaciones entre modelos. Por ejemplo, en el caso anterior, se define una relación 1 a muchos: add_(nombre del modelo emisor de la relación)_id_to_(nombre del modelo receptor de la relación). En ese comando se establece que el user_id que se va colocar en la tabla articles es una referencia al de la tabla original "user" (user:references). Como he dicho anteriormente, este comando provoca la creación de un fichero de migración, que ejecutado con rake, realiza los cambios pertinentes sobre la base de datos:
+
+```
+rake db:migrate
+```
+
+Pese a todo ésto, aún debe terminar de definirse la relación entre los modelos, en sus respectivos archivos .erb de la carpeta "models":
+
+
+ * Utilizamos la etiqueta "belongs_to :nombre_del_modelo_al_que_pertenece", para establecer la relación de pertenencia por parte de un modelo hacia otro.
+
+ * Se usa la etiqueta "has_many :nombre_del_modelo_del_que_se_tiene_muchos" para establecer que este modelo (cuyo archivo .erb se está modificando en models) está relacionado con muchas instancias del modelo que se especifica.
+
+Estas últimas etiquetas, son las que permiten que en el código de los controladores podamos hacer referencia a estas relaciones entre modelos. Por ejemplo, si hemos definido una relación de 1 usuario que tiene conexión con muchos artículos:
+
+```
+// articles.erb
+
+belongs_to :user
+
+// user.erb
+
+has_many :articles
+
+```
+
+Podemos hacer referencias como las siguientes en los controladores:
+
+```
+@article.user.email //(Tiene una referencia a su objeto user completo asociado)
+
+@article = current_user.articles.last
+
+```
+
 
 ### Controlador
 
@@ -169,3 +212,5 @@ Dentro de una instancia de ActiveRecord, en la consola de rails (o en el mismo c
   ```
 
   El anterior comando crea un modelo de tipo Usuario, con correo electrónico, contraseña, nombre de usuario, etc; Todo orientado a la autenticación con usuarios.
+
+ * En db/schema.rb se puede consultar la estructuras de todas las tablas de la base de datos.

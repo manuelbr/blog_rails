@@ -1,4 +1,7 @@
 <h2><%= @article.titulo %></h2>
+<% if not @article.user.nil?%>
+  <p>Artículo creado por <%= @article.user.email %></p>
+<% end %>
 <p><%= @article.contenido %></p>
 </br>
 <div class="field">
