@@ -12,5 +12,13 @@ class Article < ApplicationRecord
   belongs_to :user #Un artículo tiene que pertenecer a un usuario.
   validates :titulo, presence: true, uniqueness: true # El título es clave primaria
   validates :contenido, presence: true, length: {minimum: 20}
+  before_create :inicia_numero_visitas
 
+  def update_numero_visitas
+    self.update(numero_visitas: self.numero_visitas + 1)
+  end
+
+  def inicia_numero_visitas
+    self.numero_visitas = 0
+  end
 end

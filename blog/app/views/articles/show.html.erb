@@ -3,6 +3,7 @@
   <p>Artículo creado por <%= @article.user.email %></p>
 <% end %>
 <p><%= @article.contenido %></p>
+<p>Número de visitas: <%= @article.numero_visitas %></p>
 </br>
 <div class="field">
   <%= link_to "Editar", edit_article_path(@article), class: "main-color boton" %>

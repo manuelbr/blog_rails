@@ -1,5 +1,16 @@
 class ArticlesController < ApplicationController
   # Funcionalidad index del controlador articles.
+
+  # Esta etiqueta hace referencia a los métodos que se ejecutan primero de todo,
+  # al ejecutar cualquier funcionalidad de este ActiveRecord. La opción only
+  # permite determinar las funciones a las que queremos limitar el hecho de
+  # llamar a esta función por defecto. El efecto contrario lo hace "except".
+
+  #En este caso, la función authenticate_user está definida en los fuentes de devise,
+  # por ello no está aquí.
+  before_action :authenticate_user!, only: [:create,:new]
+  before_action :find_article, except:[:index,:new,:create]
+
   # GET articles
   # Muestra todos los artículos
   def index
@@ -9,7 +20,6 @@ class ArticlesController < ApplicationController
   # GET articles/:id
   #Muestra un artículo en concreto
   def show
-    @article = Article.find(params[:id])
   end
 
   #GET articles/new
@@ -44,15 +54,11 @@ class ArticlesController < ApplicationController
 
   #GET articles/:id
   def edit
-    #Encontramos el artículo a editar.
-    @article = Article.find(params[:id])
+
   end
 
   #PUT articles/:id
   def update
-    #Encontramos el artículo a actualizar.
-    @article = Article.find(params[:id])
-
     if @article.update({titulo: params[:article][:titulo], contenido: params[:article][:contenido]})
       # ó también se puede poner como @article.update(article_params)
       redirect_to @article
@@ -63,9 +69,13 @@ class ArticlesController < ApplicationController
 
   #DELETE articles/:id
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path # redirige a articles/index.
+  end
+
+  def find_article
+    #Encontramos el artículo.
+    @article = Article.find(params[:id])
   end
 
   #Todo lo que definamos a partir de la etiqueta "private" serán métodos o atributos privados.
