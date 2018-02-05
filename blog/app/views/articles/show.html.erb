@@ -8,3 +8,17 @@
 <div class="field">
   <%= link_to "Editar", edit_article_path(@article), class: "main-color boton" %>
 </div>
+
+<h3>Comentarios</h3>
+<ul>
+  <% @article.comentarios.each do |com| %>
+      <h4>Comentario de <%= com.user.email %></h4>
+      <li><%= com.body %></li>
+  <%end%>
+</ul>
+
+</br>
+<div class="field">
+  <h3>Añadir nuevo comentario</h3>
+    <%= render 'comentarios/form' %>
+</div>

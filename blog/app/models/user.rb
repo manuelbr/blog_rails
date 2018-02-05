@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   # Se establece la relación de que un usuario tiene muchos artículos.
   has_many :articles
+  has_many :comentarios
 end

@@ -1,5 +1,6 @@
 class ComentariosController < ApplicationController
   before_action :set_comentario, only: [:show, :edit, :update, :destroy]
+  before_action :set_article
   before_action :authenticate_user!
 
   # GET /comentarios
@@ -25,11 +26,12 @@ class ComentariosController < ApplicationController
   # POST /comentarios
   # POST /comentarios.json
   def create
-    @comentario = Comentario.new(comentario_params)
+    @comentario = current_user.comentarios.new(comentario_params)
+    @comentario.article = @article
 
     respond_to do |format|
       if @comentario.save
-        format.html { redirect_to @comentario, notice: 'Comentario was successfully created.' }
+        format.html { redirect_to @comentario.article, notice: 'Comentario was successfully created.' }
         format.json { render :show, status: :created, location: @comentario }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class ComentariosController < ApplicationController
   def update
     respond_to do |format|
       if @comentario.update(comentario_params)
-        format.html { redirect_to @comentario, notice: 'Comentario was successfully updated.' }
+        format.html { redirect_to @comentario.article, notice: 'Comentario was successfully updated.' }
         format.json { render :show, status: :ok, location: @comentario }
       else
         format.html { render :edit }
@@ -66,6 +68,12 @@ class ComentariosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comentario
       @comentario = Comentario.find(params[:id])
+    end
+
+    def set_article
+      #Si especifico que un recurso depende de otro (haciéndolo anidado en el archivo routes),
+      #desde el controlador puedo acceder a los parámetros del recurso padre haciendo: params[nombre_del_recurso_padre:atributo]
+      @article = Article.find(params[:article_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

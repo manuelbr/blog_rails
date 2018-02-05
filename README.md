@@ -214,3 +214,11 @@ Dentro de una instancia de ActiveRecord, en la consola de rails (o en el mismo c
   El anterior comando crea un modelo de tipo Usuario, con correo electrónico, contraseña, nombre de usuario, etc; Todo orientado a la autenticación con usuarios.
 
  * En db/schema.rb se puede consultar la estructuras de todas las tablas de la base de datos.
+ * Para especificar que un modelo forma parte de otro (esto es el concepto de "anidación"), se coloca su definición dentro de la del modelo padre, en del archivo "routes". Por ejemplo:
+
+  ```
+  //El modelo comentario forma parte del modelo artículo.
+  resources :articles do
+    resources :comentarios, only: [:create, :update, :destroy]
+  end
+  ```

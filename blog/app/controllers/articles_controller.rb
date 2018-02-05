@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   # GET articles/:id
   #Muestra un artículo en concreto
   def show
+    @comentario = Comentario.new
   end
 
   #GET articles/new

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  resources :comentarios
   devise_for :users
   get 'welcome/index'
   root 'welcome#index'
 
-  resources :articles
+  resources :articles do
+    resources :comentarios, only: [:create, :update, :destroy]
+  end
 =begin
   get "/articles" index
   post "/articles" create

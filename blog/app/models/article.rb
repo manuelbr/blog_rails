@@ -13,6 +13,7 @@ class Article < ApplicationRecord
   validates :titulo, presence: true, uniqueness: true # El título es clave primaria
   validates :contenido, presence: true, length: {minimum: 20}
   before_create :inicia_numero_visitas
+  has_many :comentarios
 
   def update_numero_visitas
     self.update(numero_visitas: self.numero_visitas + 1)
