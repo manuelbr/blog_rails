@@ -1,9 +1,9 @@
-<%= form_with(model: [@article,@comentario], local: true) do |form| %>
+<%= form_with(model: [@article,@comentario], remote: true, html: {id: "comentarios-form", ":data-type": "json"}) do |form| %>
   <% if @comentario.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
 
-      <ul>
+      <ul id="caja-comentarios">
       <% @comentario.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
